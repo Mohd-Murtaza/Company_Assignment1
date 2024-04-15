@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Input } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { IoHeartOutline } from "react-icons/io5";
@@ -15,14 +15,22 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { CgSoftwareDownload } from "react-icons/cg";
 import { BsThreeDotsVertical } from "react-icons/bs";
 const Navbar = () => {
-  const [isHovered, setIsHovered] = React.useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isHoveredOnDots, setIsHoveredOnDots]=useState(false);
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
-
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+
+  const handleMouseEnterOnDots = () => {
+    setIsHoveredOnDots(true);
+  };
+  const handleMouseLeaveOnDots = () => {
+    setIsHoveredOnDots(false);
+  };
+
   return (
     <>
       <Flex
@@ -49,21 +57,26 @@ const Navbar = () => {
             placeholder="Search for products, brands and more"
           />
         </Flex>
-        <Box className="category">
+        <Box className="category"
+        >
           <Flex
             gap={2}
             fontSize={"lg"}
             size={"lg"}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            bg={isHovered ? "#2A55E5" : "transparent"}
+            cursor="pointer"
+            p={"8px"}
+            borderRadius={"10px"}
           >
-            <PiUserCircleLight fontSize={"28"} />
-            <h3 style={{ fontSize: "18px", fontWeight: "500" }}>Login</h3>
+            <PiUserCircleLight fontSize={"28"} style={isHovered?{color:"white"}:{}} />
+            <h3 style={isHovered?{ fontSize: "18px", fontWeight: "500",color:"white"}:{}}>Login</h3>
             <RiArrowDropDownLine
               size={"35"}
               style={
                 isHovered
-                  ? { transform: "rotate(180deg) ", transitionDuration: "0.5s" }
+                  ? { transform: "rotate(180deg) ", transitionDuration: "0.5s", color:"white"}
                   : { transform: "rotate(0deg)" }
               }
             />
@@ -118,13 +131,13 @@ const Navbar = () => {
         <Box className="category">
           <Flex
             size={"lg"}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            onMouseEnter={handleMouseEnterOnDots}
+            onMouseLeave={handleMouseLeaveOnDots}
           >
             <BsThreeDotsVertical />
           </Flex>
 
-          {isHovered && (
+          {isHoveredOnDots && (
             <Box
               color={"black"}
               onMouseEnter={handleMouseEnter}
