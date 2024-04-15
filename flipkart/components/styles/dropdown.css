@@ -1,0 +1,15 @@
+.dropDownList>p{
+    padding: 10px;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    color: black;
+    font-weight: 400;
+    gap: 10px;
+}
+.dropDownList>p:hover{
+    background-color: rgb(247, 247, 247);
+    box-shadow: inset 0 0 0 1px rgb(247, 247, 247);
+    
+}
